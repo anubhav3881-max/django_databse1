@@ -1,0 +1,47 @@
+Jo website pr first time aata hai wo signup karta hai!
+
+  
+  page name :-- SignUp.html
+    
+
+  {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/bs.css' %}">
+</head>
+<body>
+    <div class=" form container bg bg-white my-5 py-5 px-5">
+        <h1 class="text text-primary text-center">SignUp Now</h1>
+        <form method="POST" class="shadow py-4 px-4">
+            {% csrf_token %}
+            <div class="form-group my-4">
+                <input type="text" name="username" class="form-control" placeholder="Type your name">
+            </div>
+            <div class="form-group my-4">
+                <input type="email" name="email" class="form-control" placeholder="Type your Email">
+            </div>
+            <div class="form-group my-4">
+                <input type="password" name="password" class="form-control" placeholder="Type your password">
+            </div>
+            <button type="submit" class="btn btn-primary">SignUp</button>
+             <p>{{success}}</p>
+        </form>
+        {% if error %}
+        <div class="alert alert-warning alert-dismissible fade show my-3" role="alert">
+            <strong>{{error}}</strong>
+        </div>
+        {% endif %}
+        {% if success %}
+        <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
+            <strong>{{success}}</strong>
+        </div>
+        {% endif %}
+       
+    </div>
+</body>
+<script src="{% static 'js/bs.js' %}"></script>
+</html>
