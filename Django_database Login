@@ -1,0 +1,37 @@
+# Jo User ek baar signup kr chuka hota hai wo login karta hai!
+
+Login.html
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/bs.css' %}">
+</head>
+<body>
+        <div class=" form container bg bg-white my-5 py-5 px-5">
+        <h1 class="text text-primary text-center">Login Now</h1>
+        <form method="POST" class="shadow py-4 px-4">
+            {% csrf_token %}
+            <div class="form-group my-4">
+                <input type="username" name="username" class="form-control" placeholder="Type your username">
+            </div>
+            <div class="form-group my-4">
+                <input type="password" name="password" class="form-control" placeholder="Type your Contact">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+             <p>{{success}}</p>
+        </form>
+        {% if error %}
+        <div class="alert alert-warning alert-dismissible fade show my-3" role="alert">
+            <strong>{{error}}</strong>
+        </div>
+        {% endif %}
+       
+    </div>
+</body>
+<script src="{% static 'js/bs.js' %}"></script>
+</html>
