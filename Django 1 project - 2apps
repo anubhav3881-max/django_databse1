@@ -1,0 +1,85 @@
+Ek hi django project me double app kaise banaye
+
+-------app banane ke baad------
+
+Step 1: Dono apps ko project me register karo
+
+myproject/settings.py me INSTALLED_APPS ke andar dono app ke naam add karo:
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    # Apne apps
+    'blog',
+    'users',
+]
+
+
+
+Step 2: Har app ke liye URL configure karo
+
+blog/urls.py (agar file nahi hai to banao):
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='blog_home'),
+]
+
+
+blog/views.py:
+
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Yeh Blog app ka home page hai")
+
+
+users/urls.py:
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.profile, name='user_profile'),
+]
+
+
+
+users/views.py:
+
+from django.http import HttpResponse
+
+def profile(request):
+    return HttpResponse("Yeh Users app ka profile page hai")
+
+
+Step 6: Project ke main urls.py me include karo
+
+myproject/urls.py:
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('blog/', include('blog.urls')),
+    path('users/', include('users.urls')),
+]
+
+
+✅ Run the project
+python manage.py runserver
+
+
+Ab:
+
+http://127.0.0.1:8000/blog/ → Blog app
+
+http://127.0.0.1:8000/users/ → Users app
